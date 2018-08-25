@@ -13,6 +13,13 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('team/{team_id}/addUser/{user_id}/assignRole/{role_id}',"TeamController@assignRole");
+Route::get('team/{team_id}/user/{user_id}/removeRole/{role_id}',"TeamController@removeRole");
+
+Route::get('user/{user_id}/roles',"UserController@getUserRoles");
+Route::get('user/{user_id}/teams',"UserController@getUserTeams");
+
+Route::resource('user','UserController');
+Route::resource('team','TeamController');
+Route::resource('role','RoleController');
+
